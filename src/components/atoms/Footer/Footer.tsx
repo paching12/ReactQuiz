@@ -1,8 +1,4 @@
-import React from "react";
-
-type FooterProps = {
-  children?: React.ReactNode;
-};
+import type { FooterProps } from "./Footer.types";
 
 const Footer = ({ children }: FooterProps) => {
   return <footer>{children}</footer>;

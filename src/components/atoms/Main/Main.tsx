@@ -1,8 +1,4 @@
-import React from "react";
-
-type MainProps = {
-  children: React.ReactNode;
-};
+import type { MainProps } from ".";
 
 const Main = ({ children }: MainProps) => {
   return <main className="main">{children}</main>;

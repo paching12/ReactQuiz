@@ -1,12 +1,5 @@
 import React from "react";
-
-type ProgressBarProps = {
-  index: number;
-  totalQuestions: number;
-  points?: number;
-  maxPoints?: number;
-  selectedAnswer?: number;
-};
+import type { ProgressBarProps } from ".";
 
 const ProgressBar: React.FC<ProgressBarProps> = ({
   index,

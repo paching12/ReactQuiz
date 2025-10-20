@@ -1,15 +1,6 @@
 import { type FC } from "react";
-import {
-  ActionPayloadsTypes,
-  type ActionPayload,
-} from "../shared/actions/actionPayload";
-
-type OptionProps = {
-  answers: string[];
-  correctOption: number;
-  selectedAnswer?: number;
-  dispatch: React.Dispatch<ActionPayload<ActionPayloadsTypes>>;
-};
+import { ActionPayloadsTypes } from "../../../shared/actions/actionPayload";
+import type { OptionProps } from ".";
 
 const Options: FC<OptionProps> = ({
   answers,
@@ -29,7 +20,7 @@ const Options: FC<OptionProps> = ({
     <div className="options">
       {answers.map((answer, index) => (
         <button
-          key={`${index}.${answer}-${answer.length}`}
+          key={`${index}.${answer}`}
           className={`btn btn-option ${
             index === selectedAnswer ? "answer" : ""
           } ${

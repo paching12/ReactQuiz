@@ -1,13 +1,6 @@
-import React, { useEffect, type FC } from "react";
-import {
-  ActionPayloadsTypes,
-  type ActionPayload,
-} from "../shared/actions/actionPayload";
-
-type TimerProps = {
-  dispatch: React.Dispatch<ActionPayload<ActionPayloadsTypes>>;
-  secondsRemaining: number;
-};
+import { useEffect, type FC } from "react";
+import { ActionPayloadsTypes } from "../../../shared/actions/actionPayload";
+import type { TimerProps } from "./Timer.types";
 
 const Timer: FC<TimerProps> = ({ dispatch, secondsRemaining }) => {
   useEffect(() => {

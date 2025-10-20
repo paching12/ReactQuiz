@@ -1,17 +1,6 @@
 import { type FC } from "react";
-import Options from "./Options";
-import type {
-  ActionPayload,
-  ActionPayloadsTypes,
-} from "../shared/actions/actionPayload";
-
-type QuestionProp = {
-  question: string;
-  answers: string[];
-  correctOption: number;
-  selectedAnswer?: number;
-  dispatch: React.Dispatch<ActionPayload<ActionPayloadsTypes>>;
-};
+import Options from "../../atoms/Option/Options";
+import type { QuestionProp } from ".";
 
 const Question: FC<QuestionProp> = ({
   question,

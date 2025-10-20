@@ -1,21 +1,21 @@
 import { useEffect, useReducer } from "react";
-import Header from "./components/Header";
-import Main from "./components/Main";
+import Header from "./components/atoms/Header/Header";
+import Main from "./components/atoms/Main/Main";
 import "./index.css";
-import Loader from "./components/Loader";
-import ErrorComponent from "./components/Error";
+import Loader from "./components/atoms/Loader/Loader";
+import ErrorComponent from "./components/atoms/ErrorComponent/Error";
 import StartScreen from "./components/StartScreen";
-import Question from "./components/Question";
+import Question from "./components/molecules/Question/Question";
 import { ActionPayloadsTypes } from "./shared/actions/actionPayload";
 import {
   initialQuestionState,
   reducerQuestionState,
 } from "./localReducer/questionStateReducer";
-import NextQuestion from "./components/NextQuestion";
-import ProgressBar from "./components/ProgressBar";
+import NextQuestion from "./components/atoms/NextQuestion/NextQuestion";
+import ProgressBar from "./components/atoms/ProgressBar/ProgressBar";
 import FinishScreen from "./components/FinishScreen";
-import Footer from "./components/Footer";
-import Timer from "./components/Timer";
+import Footer from "./components/atoms/Footer/Footer";
+import Timer from "./components/atoms/Timer/Timer";
 
 function App() {
   const [
