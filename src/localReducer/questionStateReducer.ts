@@ -2,7 +2,7 @@ import {
   ActionPayloadsTypes,
   type ActionPayload,
 } from "../shared/actions/actionPayload";
-import type { question } from "../shared/questionTypes";
+import { STATUS_QUIZ, type question } from "../shared/questionTypes";
 
 const SECS_PER_QUESTION = 30;
 export type questionState = {
@@ -33,14 +33,14 @@ export const reducerQuestionState = (
       return {
         ...initialQuestionState,
         highscore: state.highscore,
-        status: "ready",
+        status: STATUS_QUIZ.READY,
         questions: state.questions,
       };
     case ActionPayloadsTypes.SET_QUESTIONS:
       return {
         ...state,
         questions: Array.isArray(action.payload) ? action.payload : [],
-        status: "ready",
+        status: STATUS_QUIZ.READY,
       };
     case ActionPayloadsTypes.DATA_FAILED:
       return {
@@ -51,7 +51,7 @@ export const reducerQuestionState = (
     case ActionPayloadsTypes.START_QUESTION:
       return {
         ...state,
-        status: "active",
+        status: STATUS_QUIZ.ACTIVE,
         secondsRemaining: state.questions.length * SECS_PER_QUESTION,
       };
     case ActionPayloadsTypes.NEXT_QUESTION:
@@ -86,7 +86,7 @@ export const reducerQuestionState = (
     case ActionPayloadsTypes.FINISH_QUIZ:
       return {
         ...state,
-        status: "finished",
+        status: STATUS_QUIZ.FINISHED,
         highscore:
           state.points > (state.highscore ?? 0)
             ? state.points
@@ -100,7 +100,7 @@ export const reducerQuestionState = (
           state.secondsRemaining !== undefined ? state.secondsRemaining - 1 : 0,
         status:
           state.secondsRemaining !== undefined && state.secondsRemaining <= 0
-            ? "finished"
+            ? STATUS_QUIZ.FINISHED
             : state.status,
       };
     default:

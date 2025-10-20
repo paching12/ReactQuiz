@@ -26,7 +26,11 @@ import {
   reducerQuestionState,
 } from "./localReducer/questionStateReducer";
 
+//Constants & Types
+import { STATUS_QUIZ } from "./shared/questionTypes";
+
 import "./index.css";
+
 function App() {
   const [
     {
@@ -72,9 +76,9 @@ function App() {
         <Header />
 
         <Main>
-          {status === "loading" && <Loader />}
-          {status === "error" && <ErrorComponent />}
-          {status === "ready" && (
+          {status === STATUS_QUIZ.LOADING && <Loader />}
+          {status === STATUS_QUIZ.ERROR && <ErrorComponent />}
+          {status === STATUS_QUIZ.READY && (
             <StartScreen
               questions={questions}
               onStart={() =>
@@ -85,7 +89,7 @@ function App() {
               }
             />
           )}
-          {status === "active" && (
+          {status === STATUS_QUIZ.ACTIVE && (
             <>
               <ProgressBar
                 maxPoints={maxPoints}
@@ -116,7 +120,7 @@ function App() {
             </>
           )}
 
-          {status === "finished" && (
+          {status === STATUS_QUIZ.FINISHED && (
             <>
               <FinishScreen
                 points={points || 0}
