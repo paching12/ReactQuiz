@@ -1,15 +1,6 @@
 import { useCallback } from "react";
-import {
-  ActionPayloadsTypes,
-  type ActionPayload,
-} from "../shared/actions/actionPayload";
-
-type FinishedScreenProps = {
-  points: number;
-  maxPoints: number;
-  highscore?: number;
-  dispatch: React.Dispatch<ActionPayload<ActionPayloadsTypes>>;
-};
+import { ActionPayloadsTypes } from "./../../../shared/actions/actionPayload";
+import type { FinishedScreenProps } from "./FinishScreen.types";
 
 const FinishScreen = ({
   points,

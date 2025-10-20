@@ -1,10 +1,5 @@
 import type { FC } from "react";
-import type { question } from "../shared/questionTypes";
-
-type StartScreenProp = {
-  questions: question[];
-  onStart: () => void;
-};
+import type { StartScreenProp } from ".";
 
 const StartScreen: FC<StartScreenProp> = ({ questions = [], onStart }) => {
   return (

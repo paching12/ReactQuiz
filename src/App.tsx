@@ -1,22 +1,32 @@
 import { useEffect, useReducer } from "react";
-import Header from "./components/atoms/Header/Header";
-import Main from "./components/atoms/Main/Main";
-import "./index.css";
-import Loader from "./components/atoms/Loader/Loader";
+
+// Atoms
 import ErrorComponent from "./components/atoms/ErrorComponent/Error";
-import StartScreen from "./components/StartScreen";
+import Footer from "./components/atoms/Footer/Footer";
+import Header from "./components/atoms/Header/Header";
+import Loader from "./components/atoms/Loader/Loader";
+import Main from "./components/atoms/Main/Main";
+import NextQuestion from "./components/atoms/NextQuestion/NextQuestion";
+import ProgressBar from "./components/atoms/ProgressBar/ProgressBar";
+import Timer from "./components/atoms/Timer/Timer";
+
+// molecules
 import Question from "./components/molecules/Question/Question";
+
+// Pages
+import { StartScreen } from "./components/Pages/StartScreen";
+import { FinishScreen } from "./components/Pages/FinishScreen";
+
+// Actions
 import { ActionPayloadsTypes } from "./shared/actions/actionPayload";
+
+// Reducers
 import {
   initialQuestionState,
   reducerQuestionState,
 } from "./localReducer/questionStateReducer";
-import NextQuestion from "./components/atoms/NextQuestion/NextQuestion";
-import ProgressBar from "./components/atoms/ProgressBar/ProgressBar";
-import FinishScreen from "./components/FinishScreen";
-import Footer from "./components/atoms/Footer/Footer";
-import Timer from "./components/atoms/Timer/Timer";
 
+import "./index.css";
 function App() {
   const [
     {
