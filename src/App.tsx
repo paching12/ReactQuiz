@@ -1,16 +1,18 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useState } from "react";
 
 // Atoms
 import ErrorComponent from "./components/atoms/ErrorComponent/Error";
 import Footer from "./components/atoms/Footer/Footer";
 import Header from "./components/atoms/Header/Header";
 import Loader from "./components/atoms/Loader/Loader";
+import FontLoader from "./components/atoms/FontLoader/FontLoader";
 import Main from "./components/atoms/Main/Main";
 import NextQuestion from "./components/atoms/NextQuestion/NextQuestion";
 import ProgressBar from "./components/atoms/ProgressBar/ProgressBar";
+import { RestoreProgress } from "./components/atoms/RestoreProgress";
 import Timer from "./components/atoms/Timer/Timer";
 
-// molecules
+// Molecules
 import Question from "./components/molecules/Question/Question";
 
 // Pages
@@ -20,55 +22,89 @@ import { FinishScreen } from "./components/Pages/FinishScreen";
 // Actions
 import { ActionPayloadsTypes } from "./shared/actions/actionPayload";
 
-// Reducers
-import {
-  initialQuestionState,
-  reducerQuestionState,
-} from "./localReducer/questionStateReducer";
-
 //Constants & Types
 import { STATUS_QUIZ } from "./shared/questionTypes";
 
+// Data
+import Data from "./data/questions.json";
+
 import "./index.css";
+import { useQuizState } from "./hooks/useQuizState";
+import { useFontLoader } from "./hooks/useFontLoader";
 
 function App() {
-  const [
-    {
-      questions,
-      status,
-      index,
-      selectedAnswer,
-      points,
-      highscore,
-      secondsRemaining,
-    },
-    dispatch,
-  ] = useReducer(reducerQuestionState, initialQuestionState);
+  const { state, dispatch, clearPersistedState, hasPersistedProgress } =
+    useQuizState();
+
+  // Esperar a que la fuente esté cargada
+  const fontLoaded = useFontLoader("Codystar", 3000);
+
+  const [showRestoreDialog, setShowRestoreDialog] = useState(
+    hasPersistedProgress()
+  );
+  console.log("hasPersistedProgress:", hasPersistedProgress());
+
+  const {
+    questions,
+    status,
+    index,
+    selectedAnswer,
+    points,
+    highscore,
+    secondsRemaining,
+  } = state;
 
   useEffect(() => {
-    fetch("http://localhost:8000/questions")
-      .then((res) => res.json())
-      .then((data) =>
-        dispatch({
-          type: ActionPayloadsTypes.SET_QUESTIONS,
-          payload: data,
-        })
-      )
-      .catch((err) => {
-        console.error(err);
-        dispatch({
-          type: ActionPayloadsTypes.DATA_FAILED,
-          payload: undefined,
-        });
-      });
-  }, []);
+    // Simulate fetching data from an API
+    // fetch("http://localhost:8000/questions")
+    //   .then((res) => res.json())
+    //   .then((data) =>
+    //     dispatch({
+    //       type: ActionPayloadsTypes.SET_QUESTIONS,
+    //       payload: data,
+    //     })
+    //   )
+    //   .catch((err) => {
+    //     console.error(err);
+    //     dispatch({
+    //       type: ActionPayloadsTypes.DATA_FAILED,
+    //       payload: undefined,
+    //     });
+    //   });
+    dispatch({
+      type: ActionPayloadsTypes.SET_QUESTIONS,
+      payload: Data.questions,
+    });
+  }, [dispatch]);
 
-  const { question, options, correctOption } = questions?.[index] || [];
+  const onStartQuiz = () => {
+    dispatch({
+      type: ActionPayloadsTypes.START_QUESTION,
+      payload: undefined,
+    });
+  };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleRestore = () => {
+    setShowRestoreDialog(false);
+    onStartQuiz();
+  };
+
+  const handleStartNew = () => {
+    clearPersistedState();
+    setShowRestoreDialog(false);
+    dispatch({ type: ActionPayloadsTypes.RESET_QUIZ, payload: undefined });
+  };
+
+  const { question, options, correctOption } = questions?.[index] || {};
+
   const maxPoints = questions.reduce((acc, curr) => {
     return acc + curr.points;
   }, 0);
+
+  // Show loader while font is loading
+  if (!fontLoaded) {
+    return <FontLoader />;
+  }
 
   return (
     <>
@@ -77,7 +113,9 @@ function App() {
 
         <Main>
           {status === STATUS_QUIZ.LOADING && <Loader />}
-          {status === STATUS_QUIZ.ERROR && <ErrorComponent />}
+          {(status === STATUS_QUIZ.ERROR || !questions.length) && (
+            <ErrorComponent />
+          )}
           {status === STATUS_QUIZ.READY && (
             <StartScreen
               questions={questions}
@@ -89,7 +127,7 @@ function App() {
               }
             />
           )}
-          {status === STATUS_QUIZ.ACTIVE && (
+          {status === STATUS_QUIZ.ACTIVE && questions.length > 0 && (
             <>
               <ProgressBar
                 maxPoints={maxPoints}
@@ -129,6 +167,13 @@ function App() {
                 dispatch={dispatch}
               />
             </>
+          )}
+
+          {showRestoreDialog && (
+            <RestoreProgress
+              onRestore={handleRestore}
+              onStartNew={handleStartNew}
+            />
           )}
         </Main>
       </div>

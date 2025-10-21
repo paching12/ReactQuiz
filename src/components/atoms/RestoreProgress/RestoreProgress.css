@@ -1,0 +1,89 @@
+.restore-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.restore-progress-content {
+  background-color: var(--color-dark);
+  padding: 3rem;
+  border-radius: 1.5rem;
+  max-width: 50rem;
+  text-align: center;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(2rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.restore-progress-content h3 {
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+  font-size: 2.4rem;
+}
+
+.restore-progress-content p {
+  font-size: 1.6rem;
+  color: var(--color-medium);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.restore-progress-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.restore-progress-buttons .btn {
+  min-width: 18rem;
+}
+
+.restore-progress-buttons .btn-primary {
+  background-color: var(--color-theme);
+  border-color: var(--color-theme);
+}
+
+.restore-progress-buttons .btn-primary:hover {
+  background-color: #0d7c8d;
+  transform: translateY(-0.2rem);
+}
+
+.restore-progress-buttons .btn-secondary {
+  background-color: transparent;
+  border-color: var(--color-medium);
+  color: var(--color-medium);
+}
+
+.restore-progress-buttons .btn-secondary:hover {
+  background-color: var(--color-medium);
+  color: var(--color-darkest);
+  transform: translateY(-0.2rem);
+}
