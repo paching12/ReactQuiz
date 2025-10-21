@@ -82,8 +82,10 @@ export const useQuizState = () => {
       if (!stored) return false;
 
       const parsedState = JSON.parse(stored) as Partial<questionState>;
+
       return (
-        parsedState.status === STATUS_QUIZ.ACTIVE &&
+        (parsedState.status === STATUS_QUIZ.READY ||
+          parsedState.status === STATUS_QUIZ.ACTIVE) &&
         (parsedState.index ?? 0) > 0
       );
     } catch {

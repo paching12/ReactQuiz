@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // Atoms
 import ErrorComponent from "./components/atoms/ErrorComponent/Error";
@@ -25,9 +25,6 @@ import { ActionPayloadsTypes } from "./shared/actions/actionPayload";
 //Constants & Types
 import { STATUS_QUIZ } from "./shared/questionTypes";
 
-// Data
-import Data from "./data/questions.json";
-
 import "./index.css";
 import { useQuizState } from "./hooks/useQuizState";
 import { useFontLoader } from "./hooks/useFontLoader";
@@ -42,7 +39,6 @@ function App() {
   const [showRestoreDialog, setShowRestoreDialog] = useState(
     hasPersistedProgress()
   );
-  console.log("hasPersistedProgress:", hasPersistedProgress());
 
   const {
     questions,
@@ -53,29 +49,6 @@ function App() {
     highscore,
     secondsRemaining,
   } = state;
-
-  useEffect(() => {
-    // Simulate fetching data from an API
-    // fetch("http://localhost:8000/questions")
-    //   .then((res) => res.json())
-    //   .then((data) =>
-    //     dispatch({
-    //       type: ActionPayloadsTypes.SET_QUESTIONS,
-    //       payload: data,
-    //     })
-    //   )
-    //   .catch((err) => {
-    //     console.error(err);
-    //     dispatch({
-    //       type: ActionPayloadsTypes.DATA_FAILED,
-    //       payload: undefined,
-    //     });
-    //   });
-    dispatch({
-      type: ActionPayloadsTypes.SET_QUESTIONS,
-      payload: Data.questions,
-    });
-  }, [dispatch]);
 
   const onStartQuiz = () => {
     dispatch({

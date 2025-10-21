@@ -1,5 +1,7 @@
 import { useReducer, useRef, type Dispatch, useEffect } from "react";
 import { useLocalStorage } from "./useLocalStorage";
+import { ActionPayloadsTypes } from "../shared/actions/actionPayload";
+import Data from "../data/questions.json";
 
 export function usePersistedReducer<S, A>(
   reducer: (state: S, action: A) => S,
@@ -40,9 +42,14 @@ export function usePersistedReducer<S, A>(
 
   // save to localStorage on state change
   useEffect(() => {
-    // Save to localStorage only after the first render
+    // Save to localStorage only after the first render and fetch questions
     if (isFirstRender.current) {
       isFirstRender.current = false;
+
+      (dispatch as Dispatch<unknown>)({
+        type: ActionPayloadsTypes.SET_QUESTIONS,
+        payload: Data.questions,
+      });
       return;
     }
 
