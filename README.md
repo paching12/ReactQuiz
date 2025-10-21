@@ -1,75 +1,117 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# React Quiz
 
-Currently, two official plugins are available:
+[![React](https://img.shields.io/badge/React-19.1.1-61DAFB?logo=react&logoColor=white)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF?logo=vite&logoColor=white)](https://vite.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![ESLint](https://img.shields.io/badge/ESLint-9.36.0-4B32C3?logo=eslint&logoColor=white)](https://eslint.org)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Interactive quiz built with React, TypeScript and Vite. It persists progress in LocalStorage, provides a countdown timer, and follows Atomic Design.
 
-## React Compiler
+🔗 Live demo: https://paching12.github.io/ReactQuiz/
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+</div>
 
-Note: This will impact Vite dev & build performances.
+## Features
 
-## Expanding the ESLint configuration
+- useReducer-driven state machine for the quiz flow (loading, ready, active, finished, error)
+- Custom hooks for persistence and DX
+  - `useLocalStorage` – typed helpers to store/get values
+  - `usePersistedReducer` – reducer + selective persistence + initial state hydration
+  - `useQuizState` – single source of truth for the app (actions, selectors, helpers)
+- Regressive counters with proper interval management in `Timer`
+- Progress computation and UI via `ProgressBar` (answered, points, max points, percentage)
+- Persist/Restore progress UX with `RestoreProgress`
+- Atomic Design structure: atoms, molecules, pages/templates
+- TypeScript-first codebase with explicit types for components and actions
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React 19, Vite 7, TypeScript 5.9
+- ESLint 9 with React Hooks rules
+- json-server (optional, for local API prototyping)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+  components/
+    atoms/           # Footer, Header, Timer, ProgressBar, etc.
+    molecules/       # Question, etc.
+    Pages/           # StartScreen, FinishScreen
+  hooks/             # useLocalStorage, usePersistedReducer, useQuizState
+    useQuizState
+      usePersistedReducer
+        useLocalStorage
+  localReducer/      # questionStateReducer
+  data/              # questions.json (default data source)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Prerequisites:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js >= 20.19 (recommended by Vite)
+- npm >= 9
+
+Install dependencies:
+
+```powershell
+npm install
 ```
+
+Start the dev server:
+
+```powershell
+npm run dev
+```
+
+Open the app at the URL shown in the terminal (typically http://localhost:5173).
+
+### Optional: mock API with json-server
+
+By default the app imports `src/data/questions.json`. If you want to serve it via an HTTP endpoint:
+
+```powershell
+npm run server   # serves data/questions.json on http://localhost:8000
+```
+
+Then adjust your data-loading logic to request `http://localhost:8000/questions` (not required for the current setup).
+
+## Scripts
+
+- `npm run dev` – start Vite dev server
+- `npm run build` – type-check and build production bundle
+- `npm run preview` – preview the built app locally
+- `npm run lint` – run ESLint
+- `npm run server` – run json-server for the local API (optional)
+- `npm run deploy` – publish `dist` to GitHub Pages (branch `gh-pages`)
+
+## Deployment (GitHub Pages)
+
+This project is configured to deploy as a project site under `/ReactQuiz/`.
+
+- Vite base is set in `vite.config.ts`:
+  ```ts
+  base: "/ReactQuiz/";
+  ```
+- Make sure the path matches your repository name including case (GitHub Pages is case-sensitive). If you rename the repo, update this value and redeploy.
+
+## What’s inside (React concepts used)
+
+- useReducer
+- Custom hooks (LocalStorage persistence)
+- Regressive counters (proper Interval management)
+- Processing progress for the questions layout
+- Atomic Design
+- TypeScript throughout
+
+## Troubleshooting
+
+- 404s on GitHub Pages: ensure the base path matches the repo name exactly (`/ReactQuiz/`). Hard refresh the browser to invalidate cached `index.html`.
+- Build complains about Node version: upgrade to Node 20.19+ or 22.12+ as suggested by Vite.
+
+---
+
+Made with ❤️ and a focus on clean state management and DX.

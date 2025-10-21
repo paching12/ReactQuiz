@@ -25,9 +25,11 @@ import { ActionPayloadsTypes } from "./shared/actions/actionPayload";
 //Constants & Types
 import { STATUS_QUIZ } from "./shared/questionTypes";
 
-import "./index.css";
+// Hooks
 import { useQuizState } from "./hooks/useQuizState";
 import { useFontLoader } from "./hooks/useFontLoader";
+
+import "./index.css";
 
 function App() {
   const { state, dispatch, clearPersistedState, hasPersistedProgress } =
