@@ -16,9 +16,7 @@ export type ActionPayloadsTypes =
   (typeof ActionPayloadsTypes)[keyof typeof ActionPayloadsTypes];
 
 export type ActionContent = {
-  SET_QUESTIONS: {
-    questions: question[];
-  };
+  SET_QUESTIONS: question[];
   RESET_QUIZ: undefined;
   DATA_FAILED: undefined;
   START_QUESTION: undefined;

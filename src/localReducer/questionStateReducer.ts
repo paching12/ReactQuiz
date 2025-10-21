@@ -52,7 +52,10 @@ export const reducerQuestionState = (
       return {
         ...state,
         status: STATUS_QUIZ.ACTIVE,
-        secondsRemaining: state.questions.length * SECS_PER_QUESTION,
+        secondsRemaining:
+          state.secondsRemaining === undefined
+            ? state.questions.length * SECS_PER_QUESTION
+            : state.secondsRemaining,
       };
     case ActionPayloadsTypes.NEXT_QUESTION:
       return {
