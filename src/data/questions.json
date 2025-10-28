@@ -134,6 +134,17 @@
       ],
       "correctOption": 3,
       "points": 20
+    },
+    {
+      "question": "In React's rendering process, what is the correct, fundamental order of the three main phases that occur when state or props change?",
+      "options": [
+        "Initialize, Update, Cleanup",
+        "Render, Commit, Browser Paint",
+        "Pre-commit, Diffing, Mount",
+        "Render, Reconciliation, DOM Update"
+      ],
+      "correctOption": 1,
+      "points": 30
     }
   ]
 }
