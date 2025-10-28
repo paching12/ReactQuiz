@@ -1,0 +1,10 @@
+{
+  "questions": [
+    {
+      "question": "In React Router, which component is used for navigation when you also need to apply an active style (or class) to indicate the current page?",
+      "options": ["Link", "NavLink", "BrowserRoute", "Route"],
+      "correctOption": 1,
+      "points": 10
+    }
+  ]
+}
