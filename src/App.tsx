@@ -19,28 +19,27 @@ import Question from "./components/molecules/Question/Question";
 import { StartScreen } from "./components/Pages/StartScreen";
 import { FinishScreen } from "./components/Pages/FinishScreen";
 
-// Actions
-import { ActionPayloadsTypes } from "./shared/actions/actionPayload";
-
 //Constants & Types
 import { STATUS_QUIZ } from "./shared/questionTypes";
 
 // Hooks
-import { useQuizState } from "./hooks/useQuizState";
 import { useFontLoader } from "./hooks/useFontLoader";
 
 import "./index.css";
+import { useQuiz } from "./QuizContext/QuizContext";
 
 function App() {
-  const { state, dispatch, clearPersistedState, hasPersistedProgress } =
-    useQuizState();
+  const {
+    state,
+    dispatch,
+    maxPoints,
+    showRestoreDialog,
+    handleRestore,
+    handleStartNew,
+  } = useQuiz();
 
   // Esperar a que la fuente esté cargada
   const fontLoaded = useFontLoader("Codystar", 3000);
-
-  const [showRestoreDialog, setShowRestoreDialog] = useState(
-    hasPersistedProgress()
-  );
 
   const {
     questions,
@@ -51,30 +50,6 @@ function App() {
     highscore,
     secondsRemaining,
   } = state;
-
-  const onStartQuiz = () => {
-    dispatch({
-      type: ActionPayloadsTypes.START_QUESTION,
-      payload: undefined,
-    });
-  };
-
-  const handleRestore = () => {
-    setShowRestoreDialog(false);
-    onStartQuiz();
-  };
-
-  const handleStartNew = () => {
-    clearPersistedState();
-    setShowRestoreDialog(false);
-    dispatch({ type: ActionPayloadsTypes.RESET_QUIZ, payload: undefined });
-  };
-
-  const { question, options, correctOption } = questions?.[index] || {};
-
-  const maxPoints = questions.reduce((acc, curr) => {
-    return acc + curr.points;
-  }, 0);
 
   // Show loader while font is loading
   if (!fontLoaded) {
@@ -91,32 +66,16 @@ function App() {
           {(status === STATUS_QUIZ.ERROR || !questions.length) && (
             <ErrorComponent />
           )}
-          {status === STATUS_QUIZ.READY && (
-            <StartScreen
-              questions={questions}
-              onStart={() =>
-                dispatch({
-                  type: ActionPayloadsTypes.START_QUESTION,
-                  payload: undefined,
-                })
-              }
-            />
-          )}
+          {status === STATUS_QUIZ.READY && <StartScreen />}
           {status === STATUS_QUIZ.ACTIVE && questions.length > 0 && (
             <>
-              <ProgressBar
-                maxPoints={maxPoints}
-                points={points}
-                totalQuestions={questions.length}
-                index={index}
-                selectedAnswer={selectedAnswer}
-              />
+              <ProgressBar />
               <Question
-                question={question}
-                answers={options}
-                correctOption={correctOption}
-                dispatch={dispatch}
-                selectedAnswer={selectedAnswer}
+              // question={question}
+              // answers={options}
+              // correctOption={correctOption}
+              // dispatch={dispatch}
+              // selectedAnswer={selectedAnswer}
               />
               <Footer>
                 <Timer
