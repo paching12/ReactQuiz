@@ -41,15 +41,7 @@ function App() {
   // Esperar a que la fuente esté cargada
   const fontLoaded = useFontLoader("Codystar", 3000);
 
-  const {
-    questions,
-    status,
-    index,
-    selectedAnswer,
-    points,
-    highscore,
-    secondsRemaining,
-  } = state;
+  const { questions, status, points, highscore } = state;
 
   // Show loader while font is loading
   if (!fontLoaded) {
@@ -70,24 +62,10 @@ function App() {
           {status === STATUS_QUIZ.ACTIVE && questions.length > 0 && (
             <>
               <ProgressBar />
-              <Question
-              // question={question}
-              // answers={options}
-              // correctOption={correctOption}
-              // dispatch={dispatch}
-              // selectedAnswer={selectedAnswer}
-              />
+              <Question />
               <Footer>
-                <Timer
-                  dispatch={dispatch}
-                  secondsRemaining={secondsRemaining || 0}
-                />
-                <NextQuestion
-                  dispatch={dispatch}
-                  answer={selectedAnswer}
-                  index={index}
-                  totalQuestions={questions.length}
-                />
+                <Timer />
+                <NextQuestion />
               </Footer>
             </>
           )}

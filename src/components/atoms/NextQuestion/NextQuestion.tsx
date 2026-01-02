@@ -1,13 +1,12 @@
 import React from "react";
 import { ActionPayloadsTypes } from "../../../shared/actions/actionPayload";
-import type { NextQuestionProps } from ".";
+import { useQuiz } from "../../../QuizContext/QuizContext";
 
-const NextQuestion: React.FC<NextQuestionProps> = ({
-  dispatch,
-  answer,
-  index,
-  totalQuestions,
-}) => {
+const NextQuestion: React.FC = () => {
+  const { state, dispatch } = useQuiz();
+  const { questions, index, selectedAnswer: answer } = state;
+  const totalQuestions = questions.length;
+
   if (answer === undefined) return null;
 
   const textLabel =

@@ -1,8 +1,12 @@
 import { useEffect, type FC } from "react";
 import { ActionPayloadsTypes } from "../../../shared/actions/actionPayload";
-import type { TimerProps } from "./Timer.types";
+import { useQuiz } from "../../../QuizContext/QuizContext";
 
-const Timer: FC<TimerProps> = ({ dispatch, secondsRemaining }) => {
+const Timer: FC = () => {
+  const { dispatch, state } = useQuiz();
+
+  const { secondsRemaining } = state;
+
   useEffect(() => {
     const setIntervalId = setInterval(() => {
       dispatch({
@@ -16,8 +20,8 @@ const Timer: FC<TimerProps> = ({ dispatch, secondsRemaining }) => {
     };
   }, [dispatch]);
 
-  const minutesRemaing = Math.floor(secondsRemaining / 60);
-  const secondsLeft = secondsRemaining % 60;
+  const minutesRemaing = Math.floor((secondsRemaining || 0) / 60);
+  const secondsLeft = (secondsRemaining || 0) % 60;
 
   return (
     <div className="timer">

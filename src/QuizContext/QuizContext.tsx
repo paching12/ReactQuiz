@@ -42,8 +42,6 @@ const QuizProvider: FC<QuizContextProps> = ({ children }) => {
     dispatch({ type: ActionPayloadsTypes.RESET_QUIZ, payload: undefined });
   };
 
-  // const { question, options, correctOption, points } = questions?.[index] || {};
-
   const maxPoints = state?.questions?.reduce((acc, curr) => {
     return acc + curr.points;
   }, 0);
