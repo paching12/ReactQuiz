@@ -3,9 +3,9 @@ import type {
   QuizContextProps,
   QuizContextStateType,
 } from "./QuizContext.types";
-import { useQuizState } from "../hooks/useQuizState";
-import { ActionPayloadsTypes } from "../shared/actions/actionPayload";
-import { initialQuestionState } from "../localReducer/questionStateReducer";
+import { useQuizState } from "../../hooks/useQuizState";
+import { ActionPayloadsTypes } from "../../shared/actions/actionPayload";
+import { initialQuestionState } from "../../localReducer/questionStateReducer";
 
 const QuizContext = createContext<QuizContextStateType>({
   state: initialQuestionState,

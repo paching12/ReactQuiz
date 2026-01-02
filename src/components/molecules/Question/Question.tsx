@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import Options from "../../atoms/Option/Options";
-import { useQuiz } from "../../../QuizContext/QuizContext";
+import { useQuiz } from "../../../Context/QuizContext/QuizContext";
 
 const Question: FC = () => {
   const { state, dispatch } = useQuiz();

@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { useQuiz } from "../../../QuizContext/QuizContext";
+import { useQuiz } from "../../../Context/QuizContext/QuizContext";
 import { ActionPayloadsTypes } from "../../../shared/actions/actionPayload";
 
 const StartScreen: FC = () => {

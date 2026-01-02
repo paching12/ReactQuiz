@@ -24,7 +24,7 @@ import { STATUS_QUIZ } from "./shared/questionTypes";
 import { useFontLoader } from "./hooks/useFontLoader";
 
 import "./index.css";
-import { useQuiz } from "./QuizContext/QuizContext";
+import { useQuiz } from "./Context/QuizContext/QuizContext";
 
 function App() {
   const { state, showRestoreDialog, handleRestore, handleStartNew } = useQuiz();

@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { ActionPayloadsTypes } from "./../../../shared/actions/actionPayload";
-import { useQuiz } from "../../../QuizContext/QuizContext";
+import { useQuiz } from "../../../Context/QuizContext/QuizContext";
 
 const FinishScreen = () => {
   const { maxPoints, dispatch, state } = useQuiz();

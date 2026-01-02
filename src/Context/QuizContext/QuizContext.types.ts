@@ -1,9 +1,9 @@
-import type { questionState } from "../localReducer/questionStateReducer";
+import type { questionState } from "../../localReducer/questionStateReducer";
 import type {
   ActionPayload,
   ActionPayloadsTypes,
-} from "../shared/actions/actionPayload";
-import type { question } from "../shared/questionTypes";
+} from "../../shared/actions/actionPayload";
+import type { question } from "../../shared/questionTypes";
 
 export type QuizContextProps = {
   children: React.ReactNode;

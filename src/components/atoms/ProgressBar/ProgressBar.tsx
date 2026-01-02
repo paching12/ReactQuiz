@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuiz } from "../../../QuizContext/QuizContext";
+import { useQuiz } from "../../../Context/QuizContext/QuizContext";
 
 const ProgressBar: React.FC = () => {
   const { state, maxPoints } = useQuiz();

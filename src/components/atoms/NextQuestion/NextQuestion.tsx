@@ -1,6 +1,6 @@
 import React from "react";
 import { ActionPayloadsTypes } from "../../../shared/actions/actionPayload";
-import { useQuiz } from "../../../QuizContext/QuizContext";
+import { useQuiz } from "../../../Context/QuizContext/QuizContext";
 
 const NextQuestion: React.FC = () => {
   const { state, dispatch } = useQuiz();

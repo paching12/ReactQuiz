@@ -1,6 +1,6 @@
 import { useEffect, type FC } from "react";
 import { ActionPayloadsTypes } from "../../../shared/actions/actionPayload";
-import { useQuiz } from "../../../QuizContext/QuizContext";
+import { useQuiz } from "../../../Context/QuizContext/QuizContext";
 
 const Timer: FC = () => {
   const { dispatch, state } = useQuiz();
