@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 // Atoms
 import ErrorComponent from "./components/atoms/ErrorComponent/Error";
 import Footer from "./components/atoms/Footer/Footer";
@@ -29,19 +27,12 @@ import "./index.css";
 import { useQuiz } from "./QuizContext/QuizContext";
 
 function App() {
-  const {
-    state,
-    dispatch,
-    maxPoints,
-    showRestoreDialog,
-    handleRestore,
-    handleStartNew,
-  } = useQuiz();
+  const { state, showRestoreDialog, handleRestore, handleStartNew } = useQuiz();
 
   // Esperar a que la fuente esté cargada
   const fontLoaded = useFontLoader("Codystar", 3000);
 
-  const { questions, status, points, highscore } = state;
+  const { questions, status } = state;
 
   // Show loader while font is loading
   if (!fontLoaded) {
@@ -72,12 +63,7 @@ function App() {
 
           {status === STATUS_QUIZ.FINISHED && (
             <>
-              <FinishScreen
-                points={points || 0}
-                maxPoints={maxPoints || 0}
-                highscore={highscore}
-                dispatch={dispatch}
-              />
+              <FinishScreen />
             </>
           )}
 

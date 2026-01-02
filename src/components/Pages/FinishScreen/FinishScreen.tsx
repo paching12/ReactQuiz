@@ -1,14 +1,11 @@
 import { useCallback } from "react";
 import { ActionPayloadsTypes } from "./../../../shared/actions/actionPayload";
-import type { FinishedScreenProps } from "./FinishScreen.types";
+import { useQuiz } from "../../../QuizContext/QuizContext";
 
-const FinishScreen = ({
-  points,
-  maxPoints,
-  highscore,
-  dispatch,
-}: FinishedScreenProps) => {
-  const percentage = (points / maxPoints) * 100;
+const FinishScreen = () => {
+  const { maxPoints, dispatch, state } = useQuiz();
+  const { points: currentPoints, highscore } = state;
+  const percentage = (currentPoints / maxPoints) * 100;
 
   const emoji = useCallback(() => {
     if (percentage === 100) return "🏆";
@@ -20,7 +17,7 @@ const FinishScreen = ({
   return (
     <>
       <p className="result">
-        <span>{emoji()}</span>You scored <strong>{points}</strong> out of{" "}
+        <span>{emoji()}</span>You scored <strong>{currentPoints}</strong> out of{" "}
         {maxPoints}({Math.ceil(percentage)}%)
       </p>
       {highscore !== undefined && (
