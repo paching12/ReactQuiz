@@ -1,9 +1,8 @@
 import type { FC } from "react";
-import type { StartScreenProp } from ".";
 import { useQuiz } from "../../../QuizContext/QuizContext";
 import { ActionPayloadsTypes } from "../../../shared/actions/actionPayload";
 
-const StartScreen: FC<StartScreenProp> = () => {
+const StartScreen: FC = () => {
   const { state, dispatch } = useQuiz();
   const { questions } = state;
 
