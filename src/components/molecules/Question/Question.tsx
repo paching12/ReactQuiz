@@ -1,14 +1,12 @@
 import { type FC } from "react";
 import Options from "../../atoms/Option/Options";
-import type { QuestionProp } from ".";
+import { useQuiz } from "../../../QuizContext/QuizContext";
 
-const Question: FC<QuestionProp> = ({
-  question,
-  answers,
-  correctOption,
-  selectedAnswer,
-  dispatch,
-}) => {
+const Question: FC = () => {
+  const { state, dispatch } = useQuiz();
+  const { questions, index, selectedAnswer } = state;
+  const { question, options: answers, correctOption } = questions[index];
+
   return (
     <div>
       <h4>{question}</h4>
