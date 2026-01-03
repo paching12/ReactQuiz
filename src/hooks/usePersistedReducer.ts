@@ -45,11 +45,11 @@ export function usePersistedReducer<S, A>(
     // Save to localStorage only after the first render and fetch questions
     if (isFirstRender.current) {
       isFirstRender.current = false;
-
       (dispatch as Dispatch<unknown>)({
-        type: ActionPayloadsTypes.SET_QUESTIONS,
-        payload: Data.questions,
+        type: ActionPayloadsTypes.PRELOAD,
+        payload: state,
       });
+
       return;
     }
 

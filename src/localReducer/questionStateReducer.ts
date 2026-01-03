@@ -3,6 +3,8 @@ import {
   type ActionPayload,
 } from "../shared/actions/actionPayload";
 import { STATUS_QUIZ, type question } from "../shared/questionTypes";
+import { TOPIC_TYPES } from "../shared/topicTypes";
+import { getQuestionsByTopic } from "../utils/GetQuestionsByTopic";
 
 const SECS_PER_QUESTION = 30;
 export type questionState = {
@@ -13,34 +15,30 @@ export type questionState = {
   points: number;
   highscore?: number;
   secondsRemaining?: number;
+  topic?: keyof typeof TOPIC_TYPES;
 };
 
 export const initialQuestionState: questionState = {
   questions: [],
-  status: "loading",
+  status: STATUS_QUIZ.SET_TOPIC,
   index: 0,
   points: 0,
   highscore: 0,
   secondsRemaining: undefined,
+  topic: undefined,
 };
 
 export const reducerQuestionState = (
   state: questionState,
-  action: ActionPayload<ActionPayloadsTypes>
+  action: ActionPayload
 ) => {
   switch (action.type) {
     case ActionPayloadsTypes.RESET_QUIZ:
       return {
         ...initialQuestionState,
         highscore: state.highscore,
-        status: STATUS_QUIZ.READY,
+        status: STATUS_QUIZ.SET_TOPIC,
         questions: state.questions,
-      };
-    case ActionPayloadsTypes.SET_QUESTIONS:
-      return {
-        ...state,
-        questions: Array.isArray(action.payload) ? action.payload : [],
-        status: STATUS_QUIZ.READY,
       };
     case ActionPayloadsTypes.DATA_FAILED:
       return {
@@ -106,6 +104,28 @@ export const reducerQuestionState = (
             ? STATUS_QUIZ.FINISHED
             : state.status,
       };
+    case ActionPayloadsTypes.TOPIC_SELECTION: {
+      const lastTopic = action.payload;
+      const questions = getQuestionsByTopic(lastTopic);
+
+      return {
+        ...state,
+        status: STATUS_QUIZ.READY,
+        topic: lastTopic,
+        questions,
+      };
+    }
+    case ActionPayloadsTypes.PRELOAD: {
+      const lastState = action.payload;
+      const questions =
+        action.payload.topic !== undefined
+          ? getQuestionsByTopic(action.payload.topic)
+          : [];
+      return {
+        ...lastState,
+        questions,
+      };
+    }
     default:
       throw new Error("action unknown");
   }

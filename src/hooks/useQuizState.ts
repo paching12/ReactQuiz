@@ -33,10 +33,7 @@ export const useQuizState = () => {
     }
   }, [getVersion, setVersion]);
 
-  const [state, dispatch] = usePersistedReducer<
-    questionState,
-    ActionPayload<ActionPayloadsTypes>
-  >(
+  const [state, dispatch] = usePersistedReducer<questionState, ActionPayload>(
     reducerQuestionState,
     initialQuestionState,
     STORAGE_KEY,
@@ -48,6 +45,7 @@ export const useQuizState = () => {
       "selectedAnswer",
       "secondsRemaining",
       "status",
+      "topic",
     ]
   );
 
