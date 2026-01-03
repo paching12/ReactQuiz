@@ -1,7 +1,4 @@
-import type {
-  ActionPayload,
-  ActionPayloadsTypes,
-} from "../../../shared/actions/actionPayload";
+import type { ActionPayload } from "../../../shared/actions/actionPayload";
 
 export type OptionProps = {
   answers: string[];
