@@ -1,7 +1,6 @@
 import { useReducer, useRef, type Dispatch, useEffect } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 import { ActionPayloadsTypes } from "../shared/actions/actionPayload";
-import Data from "../data/questions.json";
 
 export function usePersistedReducer<S, A>(
   reducer: (state: S, action: A) => S,

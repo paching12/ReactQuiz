@@ -1,4 +1,3 @@
-import React from "react";
 import { TopicItem } from "../TopicItem";
 import "./TopicChoice.css";
 import { TOPIC_TYPES } from "../../../shared/topicTypes";

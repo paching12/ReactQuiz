@@ -23,7 +23,7 @@ export type QuizContextStateType = {
   showRestoreDialog: boolean;
   handleRestore: () => void;
   handleStartNew: () => void;
-  dispatch: React.Dispatch<ActionPayload<ActionPayloadsTypes>>;
+  dispatch: React.Dispatch<ActionPayload>;
 
   maxPoints: number;
   state: questionState;

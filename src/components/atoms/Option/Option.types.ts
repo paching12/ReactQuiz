@@ -7,5 +7,5 @@ export type OptionProps = {
   answers: string[];
   correctOption: number;
   selectedAnswer?: number;
-  dispatch: React.Dispatch<ActionPayload<ActionPayloadsTypes>>;
+  dispatch: React.Dispatch<ActionPayload>;
 };
