@@ -5,6 +5,28 @@
       "options": ["Link", "NavLink", "BrowserRoute", "Route"],
       "correctOption": 1,
       "points": 10
+    },
+    {
+      "question": "When using the useNavigate hook in React Router, what is the effect of passing { replace: true } as the second argument in Maps(\"/app\", { replace: true })?",
+      "options": [
+        "It reloads the entire page after navigating to the new route.",
+        "It prevents the user from navigating back to the previous page entirely.",
+        "It replaces the current entry in the history stack instead of adding a new one.",
+        "It clears all previous states stored in the application context."
+      ],
+      "correctOption": 2,
+      "points": 30
+    },
+    {
+      "question": "How can you pass additional data to the destination route using the Maps function?",
+      "options": [
+        "By passing the data as a third argument to the function.",
+        "Data can only be passed through query parameters in the URL string.",
+        "It is not possible to pass data between routes using the Maps function.",
+        "By adding a state property in the second argument: Maps('/path', { state: { id: 1 } })"
+      ],
+      "correctOption": 3,
+      "points": 20
     }
   ]
 }
