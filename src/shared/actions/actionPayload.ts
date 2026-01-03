@@ -1,7 +1,8 @@
-import type { question } from "../questionTypes";
+import { TOPIC_TYPES } from "../../shared/topicTypes";
+import type { questionState } from "../../localReducer/questionStateReducer";
 
 export const ActionPayloadsTypes = {
-  SET_QUESTIONS: "SET_QUESTIONS",
+  PRELOAD: "PRELOAD",
   RESET_QUIZ: "RESET_QUIZ",
   DATA_FAILED: "DATA_FAILED",
   START_QUESTION: "START_QUESTION",
@@ -10,13 +11,14 @@ export const ActionPayloadsTypes = {
   SELECT_ANSWER: "SELECT_ANSWER",
   FINISH_QUIZ: "FINISH_QUIZ",
   TICK: "TICK",
+  TOPIC_SELECTION: "TOPIC_SELECTION",
 } as const;
 
 export type ActionPayloadsTypes =
   (typeof ActionPayloadsTypes)[keyof typeof ActionPayloadsTypes];
 
 export type ActionContent = {
-  SET_QUESTIONS: question[];
+  PRELOAD: questionState;
   RESET_QUIZ: undefined;
   DATA_FAILED: undefined;
   START_QUESTION: undefined;
@@ -25,9 +27,11 @@ export type ActionContent = {
   SELECT_ANSWER: number;
   FINISH_QUIZ: undefined;
   TICK: undefined;
+  TOPIC_SELECTION: keyof typeof TOPIC_TYPES;
 };
 
-export type ActionPayload<Type extends ActionPayloadsTypes> = {
-  type: Type;
-  payload: ActionContent[Type];
-};
+export type ActionPayloadType = {
+  [T in keyof ActionContent]: { type: T; payload: ActionContent[T] };
+}[keyof ActionContent];
+
+export type ActionPayload = ActionPayloadType;

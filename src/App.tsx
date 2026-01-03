@@ -25,6 +25,7 @@ import { useFontLoader } from "./hooks/useFontLoader";
 
 import "./index.css";
 import { useQuiz } from "./Context/QuizContext/QuizContext";
+import { TopicChoice } from "./components/molecules/TopicChoice";
 
 function App() {
   const { state, showRestoreDialog, handleRestore, handleStartNew } = useQuiz();
@@ -45,10 +46,10 @@ function App() {
         <Header />
 
         <Main>
+          {status === STATUS_QUIZ.SET_TOPIC && <TopicChoice />}
           {status === STATUS_QUIZ.LOADING && <Loader />}
-          {(status === STATUS_QUIZ.ERROR || !questions.length) && (
-            <ErrorComponent />
-          )}
+          {(status === STATUS_QUIZ.ERROR || !questions.length) &&
+            status !== STATUS_QUIZ.SET_TOPIC && <ErrorComponent />}
           {status === STATUS_QUIZ.READY && <StartScreen />}
           {status === STATUS_QUIZ.ACTIVE && questions.length > 0 && (
             <>

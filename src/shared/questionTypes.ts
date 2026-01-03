@@ -10,7 +10,8 @@ export type StatusQuestion =
   | "ACTIVE"
   | "FINISHED"
   | "LOADING"
-  | "ERROR";
+  | "ERROR"
+  | "SET_TOPIC";
 
 export const STATUS_QUIZ: Record<StatusQuestion, string> = {
   READY: "ready",
@@ -18,4 +19,5 @@ export const STATUS_QUIZ: Record<StatusQuestion, string> = {
   FINISHED: "finished",
   LOADING: "loading",
   ERROR: "error",
+  SET_TOPIC: "set_topic",
 };

@@ -1,0 +1,40 @@
+.topic-card {
+  background-color: var(--color-dark);
+  border: 2px solid var(--color-dark);
+  padding: 2.4rem;
+  width: 24rem;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.topic-item {
+  list-style-type: none;
+}
+
+.topic-content {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.topic-icon {
+  width: 5rem;
+  height: 5rem;
+}
+
+.topic-info h4 {
+  margin-bottom: 0.4rem;
+  color: var(--color-light);
+}
+
+.topic-info p {
+  font-size: 1.4rem;
+  color: var(--color-medium);
+}
+
+/* Efecto hover específico para estas tarjetas */
+.topic-card:hover {
+  border-color: var(--color-theme);
+  background-color: var(--color-darkest);
+}
