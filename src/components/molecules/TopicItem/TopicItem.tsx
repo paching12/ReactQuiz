@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import type { TopicItemProps } from "./TopicItem.types";
-import "./TopicChoice.css";
+import "./TopicItem.css";
 
 const TopicItem: FC<TopicItemProps> = ({
   title,

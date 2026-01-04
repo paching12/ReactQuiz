@@ -2,7 +2,8 @@
   background-color: var(--color-dark);
   border: 2px solid var(--color-dark);
   padding: 2.4rem;
-  width: 24rem;
+  width: 100%;
+  max-width: 24rem;
   height: auto;
   display: flex;
   align-items: center;
@@ -10,6 +11,9 @@
 
 .topic-item {
   list-style-type: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .topic-content {
@@ -26,10 +30,11 @@
 .topic-info h4 {
   margin-bottom: 0.4rem;
   color: var(--color-light);
+  font-size: clamp(1.6rem, 1.1vw + 1rem, 2rem);
 }
 
 .topic-info p {
-  font-size: 1.4rem;
+  font-size: clamp(1.2rem, 0.9vw + 0.6rem, 1.4rem);
   color: var(--color-medium);
 }
 
@@ -37,4 +42,11 @@
 .topic-card:hover {
   border-color: var(--color-theme);
   background-color: var(--color-darkest);
+}
+
+@media (max-width: 640px) {
+  .topic-card {
+    width: 100%;
+    max-width: 100%;
+  }
 }

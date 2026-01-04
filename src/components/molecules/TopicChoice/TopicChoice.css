@@ -1,7 +1,18 @@
 .topic-list {
   list-style: none;
-  display: flex;
-  gap: 2.4rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 880px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  gap: 0.4rem;
+  justify-items: center;
+}
+
+@media (max-width: 640px) {
+  .topic-list {
+    gap: 1.2rem;
+  }
 }

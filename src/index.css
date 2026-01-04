@@ -35,7 +35,7 @@ body {
 }
 
 .main {
-  width: 50rem;
+  width: 100%;
 }
 
 .app-header {
@@ -254,4 +254,10 @@ progress {
 .counter * {
   font-size: inherit;
   padding: 0.8rem;
+}
+
+@media (min-width: 640px) {
+  .main {
+    width: 50rem;
+  }
 }
