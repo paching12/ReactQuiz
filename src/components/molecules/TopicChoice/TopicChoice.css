@@ -19,4 +19,8 @@
   .topic-list {
     gap: 1.2rem;
   }
+
+  .main {
+    margin-top: 4rem;
+  }
 }

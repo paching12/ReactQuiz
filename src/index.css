@@ -283,6 +283,18 @@ progress {
     font-size: 3.2rem;
   }
 
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  .btn-ui {
+    font-size: 1.14rem;
+  }
+
   .header-title {
     flex: 1;
     text-align: center;
