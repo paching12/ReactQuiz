@@ -11,6 +11,10 @@
   justify-items: center;
 }
 
+.main-container {
+  width: 100%;
+}
+
 @media (max-width: 640px) {
   .topic-list {
     gap: 1.2rem;

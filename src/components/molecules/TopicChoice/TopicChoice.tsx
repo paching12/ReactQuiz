@@ -13,7 +13,7 @@ const TopicChoice = () => {
   };
 
   return (
-    <div>
+    <div className="main-container">
       <ul className="topic-list">
         {topics.map((topic) => (
           <TopicItem
