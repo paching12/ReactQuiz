@@ -21,22 +21,26 @@ import { FinishScreen } from "./components/Pages/FinishScreen";
 import { STATUS_QUIZ } from "./shared/questionTypes";
 
 // Hooks
-import { useFontLoader } from "./hooks/useFontLoader";
+import { useAssetsLoader } from "./hooks/useAssetsLoader";
 
 import "./index.css";
 import { useQuiz } from "./Context/QuizContext/QuizContext";
 import { TopicChoice } from "./components/molecules/TopicChoice";
+import topics from "./data/Topics/topics";
 
 function App() {
   const { state, showRestoreDialog, handleRestore, handleStartNew } = useQuiz();
 
-  // Esperar a que la fuente esté cargada
-  const fontLoaded = useFontLoader("Codystar", 3000);
+  const assetsReady = useAssetsLoader({
+    images: topics.map((t) => t.icon),
+    fontFamily: "Codystar",
+    fontTimeout: 3000,
+  });
 
   const { questions, status } = state;
 
   // Show loader while font is loading
-  if (!fontLoaded) {
+  if (!assetsReady) {
     return <FontLoader />;
   }
 
