@@ -1,5 +1,6 @@
 import { TOPIC_TYPES } from "../../shared/topicTypes";
 import type { questionState } from "../../localReducer/questionStateReducer";
+import type { DialogTypeProps } from "../DialogTypes";
 
 export const ActionPayloadsTypes = {
   PRELOAD: "PRELOAD",
@@ -12,6 +13,7 @@ export const ActionPayloadsTypes = {
   FINISH_QUIZ: "FINISH_QUIZ",
   TICK: "TICK",
   TOPIC_SELECTION: "TOPIC_SELECTION",
+  SET_DIALOG_DATA: "SET_DIALOG_DATA",
 } as const;
 
 export type ActionPayloadsTypes =
@@ -28,6 +30,7 @@ export type ActionContent = {
   FINISH_QUIZ: undefined;
   TICK: undefined;
   TOPIC_SELECTION: keyof typeof TOPIC_TYPES;
+  SET_DIALOG_DATA: DialogTypeProps;
 };
 
 export type ActionPayloadType = {

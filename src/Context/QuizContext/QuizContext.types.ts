@@ -1,3 +1,4 @@
+import type { Dispatch, SetStateAction } from "react";
 import type { questionState } from "../../localReducer/questionStateReducer";
 import type { ActionPayload } from "../../shared/actions/actionPayload";
 import type { question } from "../../shared/questionTypes";
@@ -18,6 +19,7 @@ export type Quiz = {
 
 export type QuizContextStateType = {
   showRestoreDialog: boolean;
+  setShowRestoreDialog: Dispatch<SetStateAction<boolean>>;
   handleRestore: () => void;
   handleStartNew: () => void;
   dispatch: React.Dispatch<ActionPayload>;

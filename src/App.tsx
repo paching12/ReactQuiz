@@ -37,7 +37,7 @@ function App() {
     fontTimeout: 3000,
   });
 
-  const { questions, status } = state;
+  const { questions, status, dialogData } = state;
 
   // Show loader while font is loading
   if (!assetsReady) {
@@ -74,8 +74,13 @@ function App() {
 
           {showRestoreDialog && (
             <RestoreProgress
+              title={dialogData?.title}
+              question={dialogData?.question}
+              restoreButtonTitle={dialogData?.restoreButtonTitle}
+              startButtonTitle={dialogData?.startButtonTitle}
               onRestore={handleRestore}
               onStartNew={handleStartNew}
+              persistance={!dialogData}
             />
           )}
         </Main>

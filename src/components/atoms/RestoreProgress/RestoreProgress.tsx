@@ -9,29 +9,31 @@ import "./RestoreProgress.css";
  * Allows the user to decide whether to continue or start anew
  */
 const RestoreProgress: FC<RestoreProgressProps> = ({
+  title = "📌 Saved Progress Detected",
+  question = "You have a quiz in progress. Do you want to continue where you left off?",
+  restoreButtonTitle = "Continue Quiz",
+  startButtonTitle = "Start New Quiz",
   onRestore,
   onStartNew,
+  persistance,
 }) => {
   const { hasPersistedProgress } = useQuizState();
 
-  if (!hasPersistedProgress()) {
+  if (!hasPersistedProgress() && persistance) {
     return null;
   }
 
   return (
     <div className="restore-progress">
       <div className="restore-progress-content">
-        <h3>📌 Saved Progress Detected</h3>
-        <p>
-          You have a quiz in progress. Do you want to continue where you left
-          off?
-        </p>
+        <h3>{title}</h3>
+        <p>{question}</p>
         <div className="restore-progress-buttons">
           <button className="btn btn-primary" onClick={onRestore}>
-            Continue Quiz
+            {restoreButtonTitle}
           </button>
           <button className="btn btn-secondary" onClick={onStartNew}>
-            Start New Quiz
+            {startButtonTitle}
           </button>
         </div>
       </div>

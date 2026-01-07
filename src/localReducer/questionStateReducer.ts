@@ -2,6 +2,7 @@ import {
   ActionPayloadsTypes,
   type ActionPayload,
 } from "../shared/actions/actionPayload";
+import type { DialogTypeProps } from "../shared/DialogTypes";
 import { STATUS_QUIZ, type question } from "../shared/questionTypes";
 import { TOPIC_TYPES } from "../shared/topicTypes";
 import { getQuestionsByTopic } from "../utils/GetQuestionsByTopic";
@@ -16,6 +17,7 @@ export type questionState = {
   highscore?: number;
   secondsRemaining?: number;
   topic?: keyof typeof TOPIC_TYPES;
+  dialogData?: DialogTypeProps;
 };
 
 export const initialQuestionState: questionState = {
@@ -26,6 +28,7 @@ export const initialQuestionState: questionState = {
   highscore: 0,
   secondsRemaining: undefined,
   topic: undefined,
+  dialogData: undefined,
 };
 
 export const reducerQuestionState = (
@@ -39,6 +42,7 @@ export const reducerQuestionState = (
         highscore: state.highscore,
         status: STATUS_QUIZ.SET_TOPIC,
         questions: state.questions,
+        dialogData: undefined,
       };
     case ActionPayloadsTypes.DATA_FAILED:
       return {
@@ -126,6 +130,11 @@ export const reducerQuestionState = (
         questions,
       };
     }
+    case ActionPayloadsTypes.SET_DIALOG_DATA:
+      return {
+        ...state,
+        dialogData: action.payload,
+      };
     default:
       throw new Error("action unknown");
   }

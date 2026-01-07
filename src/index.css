@@ -46,6 +46,10 @@ body {
   align-items: center;
 }
 
+.header-img {
+  cursor: pointer;
+}
+
 .error {
   text-align: center;
   font-size: 1.6rem;

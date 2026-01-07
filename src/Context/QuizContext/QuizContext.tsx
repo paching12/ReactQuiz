@@ -14,6 +14,7 @@ const QuizContext = createContext<QuizContextStateType>({
   handleStartNew: () => {},
   dispatch: () => {},
   maxPoints: 0,
+  setShowRestoreDialog: () => {},
 });
 
 const QuizProvider: FC<QuizContextProps> = ({ children }) => {
@@ -55,6 +56,7 @@ const QuizProvider: FC<QuizContextProps> = ({ children }) => {
         handleStartNew,
         maxPoints,
         dispatch,
+        setShowRestoreDialog,
       }}
     >
       {children}
