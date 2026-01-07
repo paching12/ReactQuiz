@@ -14,7 +14,6 @@ function Header() {
   );
 
   const clickHandler = () => {
-    console.log("click");
     if (status === STATUS_QUIZ.ACTIVE) setShowRestoreDialog(true);
     dispatch({
       type: ActionPayloadsTypes.SET_DIALOG_DATA,
