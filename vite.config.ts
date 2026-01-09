@@ -12,4 +12,7 @@ export default defineConfig({
   ],
   // For GitHub Pages project sites, base must be the repo name with exact casing, prefixed and suffixed by '/'
   base: "/ReactQuiz/",
+  server: {
+    open: true, // This will open the browser automatically
+  },
 });
