@@ -1,0 +1,81 @@
+{
+  "questions": [
+    {
+      "question": "In React's rendering process, what is the correct, fundamental order of the three main phases that occur when state or props change?",
+      "options": [
+        "Initialize, Update, Cleanup",
+        "Render, Commit, Browser Paint",
+        "Pre-commit, Diffing, Mount",
+        "Render, Reconciliation, DOM Update"
+      ],
+      "correctOption": 1,
+      "points": 30
+    },
+    {
+      "question": "Memo (not useMemo) will only re-render when...",
+      "options": [
+        "Context that it's suscribed to changes",
+        "Props change",
+        "Own state changes",
+        "All the answers are correct "
+      ],
+      "correctOption": 3,
+      "points": 15
+    },
+    {
+      "question": "Which tool you can use to avoid useless rerenders?",
+      "options": [
+        "React DevTools Profiler",
+        "React DevTools",
+        "React memo",
+        "React useRef"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "Which pattern design would you use if you have a component that constantly changes without using memoization?",
+      "options": [
+        "Global vars",
+        "Move parent state to a context",
+        "Component Composition",
+        "Using useEffect with empty dependencies"
+      ],
+      "correctOption": 2,
+      "points": 30
+    },
+    {
+      "question": "In React, which data types are treated as 'new' on every re-render when passed as props, even if their content remains identical?",
+      "options": [
+        "Objects and Functions",
+        "Strings and Null",
+        "Only Undefined values",
+        "Objects, Arrays, and Functions"
+      ],
+      "correctOption": 3,
+      "points": 20
+    },
+    {
+      "question": "Which kind of type data memoize useMemo?",
+      "options": [
+        "Value types",
+        "Only strings values",
+        "Functions",
+        "Any type of data"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "Which kind of type data memoize useCallback?",
+      "options": [
+        "Only number values",
+        "Only strings literals",
+        "Functions",
+        "Any type of data"
+      ],
+      "correctOption": 2,
+      "points": 10
+    }
+  ]
+}

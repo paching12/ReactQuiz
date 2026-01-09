@@ -2,6 +2,7 @@ import { TOPIC_TYPES } from "../../shared/topicTypes";
 import StringUtility from "../../utils/stringUtility";
 import ReactQuestions from "./../questions.json";
 import ReactRouterQuestions from "./../reactRouter.json";
+import ReactAdvancedQuestions from "./../reactAdvanced.json";
 
 const topics = [
   {
@@ -17,6 +18,13 @@ const topics = [
     type: TOPIC_TYPES.REDUX as unknown as keyof typeof TOPIC_TYPES,
     questionsCount: ReactRouterQuestions.questions.length,
     icon: "https://raw.githubusercontent.com/reduxjs/redux/master/logo/logo.png",
+  },
+  {
+    id: 3,
+    title: "React Mid",
+    type: TOPIC_TYPES.ADVANCED_REACT as unknown as keyof typeof TOPIC_TYPES,
+    questionCount: ReactAdvancedQuestions.questions.length,
+    icon: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
   },
 ];
 
