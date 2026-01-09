@@ -20,7 +20,7 @@ const TopicChoice = () => {
             key={topic.id}
             title={topic.title}
             icon={topic.icon}
-            questionsCount={topic.questionsCount}
+            questionsCount={topic.questionsCount!}
             onSelectTopic={() => onSelectHandler(topic.type)}
           />
         ))}
