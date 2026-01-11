@@ -134,6 +134,17 @@
       ],
       "correctOption": 3,
       "points": 20
+    },
+    {
+      "question": "In React, props are considered read-only. If a child component needs to change a value received via props, what is the correct approach?",
+      "options": [
+        "Mutate the prop directly to reflect the change.",
+        "Use the prop as an initial value for a local state or call a function passed by the parent.",
+        "Use a useRef hook to change prop value",
+        "Re-assign the prop variable within th component body"
+      ],
+      "correctOption": 1,
+      "points": 10
     }
   ]
 }
